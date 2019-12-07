@@ -17,6 +17,29 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<!-- Explicitly declaring the source encoding eliminates the following
+			message: -->
+		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+			resources, i.e. build is platform dependent! -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- maven-compiler-plugin -->
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<!-- other plugin versions -->
+		<keycloak.version>2.4.0.Final</keycloak.version>
+		<openfeign.version>9.4.0</openfeign.version>
+		<openfeign.opentracing.version>0.0.3</openfeign.opentracing.version>
+		<hystrix.version>1.5.1</hystrix.version>
+		<io.opentracing.version>0.22.0</io.opentracing.version>
+		<io.opentracing.contrib.spring.autoconfigure.version>0.0.4</io.opentracing.contrib.spring.autoconfigure.version>
+		<swagger.version>1.5.8</swagger.version>
+		<springfox.version>2.4.0</springfox.version>
+		<version.jaeger>0.19.0</version.jaeger>
+		<!-- Setting the image explicity to use redhat-openjdk -->
+		<!-- There is kind of issue honoring JAVA_OPTIONS with fabric8-s2i images -->
+		<fabric8.generator.from>fabric8/s2i-java</fabric8.generator.from>
 	</properties>
 
 	<dependencies>
