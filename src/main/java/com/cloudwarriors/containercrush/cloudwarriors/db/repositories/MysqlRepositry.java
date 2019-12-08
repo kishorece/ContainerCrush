@@ -43,7 +43,7 @@ public class MysqlRepositry {
 		List<Object[]> storedProcsResults = null;
 		try {
 			entityManager = entityManagerFactory.createEntityManager();
-			String sqlString = "select P.Item_Number,P.Description,P.Long_Description,P.Catalogue_Category,P.SKU_Unit_Of_Meaure,P.Style_Item,P.SKUAttribute1,P.SKUAttribute2,P.SKUAttribute3,P.SKUAttribute4,P.SKUAttribute5,P.SKUAttribute6,P.SKUAtt_Value1,P.SKUAtt_Value2,P.SKUAtt_Value3,P.SKUAtt_Value4,P.SKUAtt_Value5,P.SKUAtt_Value6,S.Brand,C.Segment,C.Segment_Name,C.Family,C.Family_Name,C.Class,C.Class_Name,C.Commodity,C.Commodity_Name,X.PriceID,X.List_Price,X.Discount,X.InStock,X.Price_Effective_Date from XXIBM_PRODUCT_SKU P,XXIBM_PRODUCT_STYLE S,XXIBM_PRODUCT_CATALOG C,XXIBM_PRODUCT_PRICING X where P.Style_Item=S.Item_Number and C.Commodity=S.Catalogue_Category and P.Item_Number=X.Item_Number";
+			String sqlString = "SELECT P.ITEM_NUMBER,P.DESCRIPTION,P.LONG_DESCRIPTION,P.CATALOGUE_CATEGORY,P.SKU_UNIT_OF_MEAURE,P.STYLE_ITEM,P.SKUATTRIBUTE1,P.SKUATTRIBUTE2,P.SKUATTRIBUTE3,P.SKUATTRIBUTE4,P.SKUATTRIBUTE5,P.SKUATTRIBUTE6,P.SKUATT_VALUE1,P.SKUATT_VALUE2,P.SKUATT_VALUE3,P.SKUATT_VALUE4,P.SKUATT_VALUE5,P.SKUATT_VALUE6,S.BRAND,C.SEGMENT,C.SEGMENT_NAME,C.FAMILY,C.FAMILY_NAME,C.CLASS,C.CLASS_NAME,C.COMMODITY,C.COMMODITY_NAME,X.PRICEID,X.LIST_PRICE,X.DISCOUNT,X.INSTOCK,X.PRICE_EFFECTIVE_DATE FROM XXIBM_PRODUCT_SKU P,XXIBM_PRODUCT_STYLE S,XXIBM_PRODUCT_CATALOG C,XXIBM_PRODUCT_PRICING X WHERE P.STYLE_ITEM=S.ITEM_NUMBER AND C.COMMODITY=S.CATALOGUE_CATEGORY AND P.ITEM_NUMBER=X.ITEM_NUMBER";
 			Query query = entityManager.createNativeQuery(sqlString);
 			storedProcsResults = query.getResultList();
 		}
