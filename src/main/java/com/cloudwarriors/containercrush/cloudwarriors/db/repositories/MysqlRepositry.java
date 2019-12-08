@@ -24,7 +24,7 @@ public class MysqlRepositry {
 	String value1= null;
 	try {
 		entityManager = entityManagerFactory.createEntityManager();
-		String sqlString = "SELECT Item_Number FROM sampledb.XXIBM_PRODUCT_PRICING where priceID='1'";
+		String sqlString = "SELECT Item_Number FROM sampledb.XXIBM_PRODUCT_PRICING where PRICEID='1'";
 		Query query = entityManager.createNativeQuery(sqlString);
 		value = (Integer)query.getSingleResult();
 		value1 = String.valueOf(value);
