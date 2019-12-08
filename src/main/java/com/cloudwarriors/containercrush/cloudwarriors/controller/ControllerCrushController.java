@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,14 @@ public class ControllerCrushController {
 		ProductResponse response = new ProductResponse();
 		ProductResponse response1 = detailsService.getBasicProductDetails(response);
 		return new ResponseEntity<>(response1,HttpStatus.OK);
+		
+		
+	}
+	@GetMapping(value = "/product", produces = "application/json")
+	public ResponseEntity getAllProduct(){
+		
+		List<Object[]> storedProcedure = sqlRepositry.retrieveProducts();
+		return new ResponseEntity<>(storedProcedure,HttpStatus.OK);
 		
 		
 	}
