@@ -59,12 +59,15 @@ public class MysqlRepositry {
 		List<Object[]> storedProcsResults = null;
 		try {
 			entityManager = entityManagerFactory.createEntityManager();
-			String sqlString = "SELECT `XXIBM_PRODUCT_STYLE`.`Item_Number`,\r\n" + 
-					"    `XXIBM_PRODUCT_STYLE`.`Description`,\r\n" + 
-					"    `XXIBM_PRODUCT_STYLE`.`Long_Description`,\r\n" + 
-					"    `XXIBM_PRODUCT_STYLE`.`Catalogue_Category`,\r\n" + 
-					"    `XXIBM_PRODUCT_STYLE`.`Brand`\r\n" + 
-					"FROM `sampledb`.`XXIBM_PRODUCT_STYLE`;";
+			String sqlString = "SELECT `XXIBM_PRODUCT_CATALOG`.`Segment`,\r\n" + 
+					"    `XXIBM_PRODUCT_CATALOG`.`Segment_Name`,\r\n" + 
+					"    `XXIBM_PRODUCT_CATALOG`.`Family`,\r\n" + 
+					"    `XXIBM_PRODUCT_CATALOG`.`Family_Name`,\r\n" + 
+					"    `XXIBM_PRODUCT_CATALOG`.`Class`,\r\n" + 
+					"    `XXIBM_PRODUCT_CATALOG`.`Class_Name`,\r\n" + 
+					"    `XXIBM_PRODUCT_CATALOG`.`Commodity`,\r\n" + 
+					"    `XXIBM_PRODUCT_CATALOG`.`Commodity_Name`\r\n" + 
+					"FROM `sampledb`.`XXIBM_PRODUCT_CATALOG`;";
 			Query query = entityManager.createNativeQuery(sqlString);
 			storedProcsResults = query.getResultList();	
 		}
