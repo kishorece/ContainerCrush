@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cloudwarriors.containercrush.cloudwarriors.db.repositories.MysqlRepositry;
 import com.cloudwarriors.containercrush.cloudwarriors.models.ProductClassResponse;
 import com.cloudwarriors.containercrush.cloudwarriors.models.ProductResponse;
+import com.cloudwarriors.containercrush.cloudwarriors.models.ProductSingleResponse;
 import com.cloudwarriors.containercrush.service.ProductDetailsService;
 
 @RestController
@@ -75,5 +76,14 @@ public class ControllerCrushController {
 			
 		}
 	
+	@CrossOrigin(origins = "*")
+	  @GetMapping(value = "item/{itemNumber}", produces = "application/json")
+		public ResponseEntity getSingleProductDetails(@PathVariable("itemNumber") String itemNumber){
+			ProductSingleResponse response = new ProductSingleResponse();
+			ProductSingleResponse response1 = detailsService.getSingleProductDetails(itemNumber,response);
+			return new ResponseEntity<>(response1,HttpStatus.OK);
+			
+			
+		}
 	}  
 

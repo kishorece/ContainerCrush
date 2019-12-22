@@ -164,6 +164,67 @@ public class MysqlRepositry {
 			}
 			return storedProcsResults;
 	}
+	
+	public List<Object[]> getSingleProductDetails(String itemNumber){
+		EntityManager entityManager = null;
+		List<Object[]> storedProcsResults = null;
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			String sqlString = "select \r\n" + 
+					"P.Item_Number            ,\r\n" + 
+					"P.Description            ,\r\n" + 
+					"P.Long_Description       ,\r\n" + 
+					"P.Catalogue_Category     ,\r\n" + 
+					"P.SKU_Unit_Of_Meaure     ,\r\n" + 
+					"P.Style_Item             ,\r\n" + 
+					"P.SKUAttribute1          ,\r\n" + 
+					"P.SKUAttribute2          ,\r\n" + 
+					"P.SKUAttribute3          ,\r\n" + 
+					"P.SKUAttribute4          ,\r\n" + 
+					"P.SKUAttribute5          ,\r\n" + 
+					"P.SKUAttribute6          ,\r\n" + 
+					"P.SKUAtt_Value1          ,\r\n" + 
+					"P.SKUAtt_Value2          ,\r\n" + 
+					"P.SKUAtt_Value3          ,\r\n" + 
+					"P.SKUAtt_Value4          ,\r\n" + 
+					"P.SKUAtt_Value5          ,\r\n" + 
+					"P.SKUAtt_Value6          ,\r\n" + 
+					"S.Brand                  ,\r\n" + 
+					"C.Segment                ,\r\n" + 
+					"C.Segment_Name           ,\r\n" + 
+					"C.Family                 ,\r\n" + 
+					"C.Family_Name            ,\r\n" + 
+					"C.Class                  ,\r\n" + 
+					"C.Class_Name             ,\r\n" + 
+					"C.Commodity              ,\r\n" + 
+					"C.Commodity_Name         ,\r\n" + 
+					"X.PriceID                ,\r\n" + 
+					"X.List_Price             ,\r\n" + 
+					"X.Discount               ,\r\n" + 
+					"X.InStock                ,\r\n" + 
+					"X.Price_Effective_Date     \r\n" + 
+					"from\r\n" + 
+					"XXIBM_PRODUCT_SKU P, \r\n" + 
+					"XXIBM_PRODUCT_STYLE S,\r\n" + 
+					"XXIBM_PRODUCT_CATALOG C,\r\n" + 
+					"XXIBM_PRODUCT_PRICING X\r\n" + 
+					"where\r\n" + 
+					"P.Style_Item=S.Item_Number and \r\n" + 
+					"C.Commodity=S.Catalogue_Category and\r\n" + 
+					"P.Item_Number=X.Item_Number\r\n" + 
+					"and P.Item_Number = '"+itemNumber+"'";
+			Query query = entityManager.createNativeQuery(sqlString);
+			storedProcsResults = query.getResultList();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally {
+			closeResources(entityManager);
+		}
+		return storedProcsResults;
+	}
 	private void closeResources(EntityManager entityManager) {
 
 		
